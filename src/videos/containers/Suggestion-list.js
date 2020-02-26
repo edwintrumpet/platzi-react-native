@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, FlatList} from 'react-native';
+import Layout from '../components/Suggestion-list-layout';
 
 const SuggestionList = () => {
   const list = [
@@ -13,7 +14,12 @@ const SuggestionList = () => {
     },
   ];
   return (
-    <FlatList data={list} renderItem={({item}) => <Text>{item.title}</Text>} />
+    <Layout title="Recomendado para ti">
+      <FlatList
+        data={list}
+        renderItem={({item}) => <Text>{item.title}</Text>}
+      />
+    </Layout>
   );
 };
 
