@@ -10,6 +10,14 @@ class Api {
     } = await query.json();
     return movies;
   }
+
+  async getMovies() {
+    const query = await fetch(`${BASE_API}list_movies.json`);
+    const {
+      data: {movies},
+    } = await query.json();
+    return movies;
+  }
 }
 
 export default new Api();
