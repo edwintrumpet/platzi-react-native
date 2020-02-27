@@ -4,7 +4,7 @@ import Layout from '../components/Category-list-layout';
 import Empty from '../components/Empty';
 import Separator from '../components/Horizontal-separator';
 import Category from '../components/Category';
-import {Connect} from 'react-redux';
+import {connect} from 'react-redux';
 
 const CategoryList = ({categories}) => {
   const renderEmpty = () => <Empty text="No hay sugerencias :(" />;
@@ -29,4 +29,10 @@ const CategoryList = ({categories}) => {
   );
 };
 
-export default Connect(null)(CategoryList);
+const mapStateToProps = state => {
+  return {
+    categories: state.categoryList,
+  };
+};
+
+export default connect(mapStateToProps)(CategoryList);
