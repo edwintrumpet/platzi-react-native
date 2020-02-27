@@ -9,6 +9,7 @@ import Player from './src/player/containers/Player';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from './src/store';
+import Loading from './src/sections/components/Loading';
 
 const App = () => {
   useEffect(() => {
@@ -30,7 +31,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <PersistGate loading={<Text>Cargando...</Text>} persistor={persistor}>
+      <PersistGate loading={<Loading />} persistor={persistor}>
         <Home>
           <Header />
           <Player />
