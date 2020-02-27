@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {Text} from 'react-native';
 import Home from './src/screens/containers/Home';
 import Header from './src/sections/components/Header';
 import SuggestionList from './src/videos/containers/Suggestion-list';
@@ -6,7 +7,8 @@ import Api from './src/utils/api';
 import CategoryList from './src/videos/containers/Category-list';
 import Player from './src/player/containers/Player';
 import {Provider} from 'react-redux';
-import store from './src/store';
+import {PersistGate} from 'redux-persist/integration/react';
+import {store, persistor} from './src/store';
 
 const App = () => {
   useEffect(() => {
@@ -28,12 +30,14 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <Home>
-        <Header />
-        <Player />
-        <CategoryList />
-        <SuggestionList />
-      </Home>
+      <PersistGate loading={<Text>Cargando...</Text>} persistor={persistor}>
+        <Home>
+          <Header />
+          <Player />
+          <CategoryList />
+          <SuggestionList />
+        </Home>
+      </PersistGate>
     </Provider>
   );
 };
