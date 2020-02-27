@@ -5,6 +5,8 @@ import SuggestionList from './src/videos/containers/Suggestion-list';
 import Api from './src/utils/api';
 import CategoryList from './src/videos/containers/Category-list';
 import Player from './src/player/containers/Player';
+import {Provider} from 'react-redux';
+import store from './src/store';
 
 const App = () => {
   const [list, setList] = useState([]);
@@ -24,12 +26,14 @@ const App = () => {
   }, []);
 
   return (
-    <Home>
-      <Header />
-      <Player />
-      <CategoryList categories={categories} />
-      <SuggestionList list={list} />
-    </Home>
+    <Provider store={store}>
+      <Home>
+        <Header />
+        <Player />
+        <CategoryList categories={categories} />
+        <SuggestionList list={list} />
+      </Home>
+    </Provider>
   );
 };
 
