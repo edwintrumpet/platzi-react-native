@@ -6,12 +6,23 @@ import Separator from '../components/Separator';
 import Suggestion from '../components/Suggestion';
 import {connect} from 'react-redux';
 
-const SuggestionList = ({list}) => {
+const SuggestionList = ({list, dispatch}) => {
   const renderEmpty = () => <Empty text="No hay sugerencias :(" />;
 
   const renderSeparator = () => <Separator />;
 
-  const renderSuggestion = ({item}) => <Suggestion {...item} />;
+  const viewMovie = item => {
+    dispatch({
+      type: 'SET_SELECTED_MOVIE',
+      payload: {
+        movie: item,
+      },
+    });
+  };
+
+  const renderSuggestion = ({item}) => (
+    <Suggestion {...item} onPress={() => viewMovie(item)} />
+  );
 
   const key = item => item.id.toString();
 

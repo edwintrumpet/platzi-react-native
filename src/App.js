@@ -2,12 +2,12 @@ import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import Api from './utils/api';
 import CategoryList from './videos/containers/Category-list';
-import Player from './player/containers/Player';
 import Home from './screens/containers/Home';
 import Header from './sections/components/Header';
 import SuggestionList from './videos/containers/Suggestion-list';
+import Movie from './screens/containers/Movie';
 
-const AppLayout = ({dispatch}) => {
+const AppLayout = ({dispatch, selectedMovie}) => {
   useEffect(() => {
     (async () => {
       const [suggestionList, categoryList] = await Promise.all([
@@ -26,14 +26,22 @@ const AppLayout = ({dispatch}) => {
     })();
   }, [dispatch]);
 
+  if (selectedMovie) {
+    return <Movie />;
+  }
   return (
     <Home>
       <Header />
-      <Player />
       <CategoryList />
       <SuggestionList />
     </Home>
   );
 };
 
-export default connect(null)(AppLayout);
+const mapStateToProps = state => {
+  return {
+    selectedMovie: state.selectedMovie,
+  };
+};
+
+export default connect(mapStateToProps)(AppLayout);
