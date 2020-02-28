@@ -6,6 +6,7 @@ import Home from './screens/containers/Home';
 import Header from './sections/components/Header';
 import SuggestionList from './videos/containers/Suggestion-list';
 import Movie from './screens/containers/Movie';
+import Search from './sections/containers/Search';
 
 const AppLayout = ({dispatch, selectedMovie}) => {
   useEffect(() => {
@@ -32,6 +33,7 @@ const AppLayout = ({dispatch, selectedMovie}) => {
   return (
     <Home>
       <Header />
+      <Search />
       <CategoryList />
       <SuggestionList />
     </Home>
